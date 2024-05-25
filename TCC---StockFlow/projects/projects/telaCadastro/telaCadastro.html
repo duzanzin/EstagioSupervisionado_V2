@@ -14,7 +14,7 @@
     <h1>Cadastre-se para garantir as melhores ofertas</h1>
     <form id="register-form" action="">
         <div class="full-box">
-            <label for="e-mail"> E-email</label>
+            <label for="e-mail"> E-mail</label>
             <input type="email" name="email" id="email" placeholder="Digite seu e-mail" data-min-lenght="3">
 
         </div>
@@ -24,18 +24,18 @@
         </div>
 
         <div class="half-box">
-            <label for="e-meial"> Sobrenome</label>
-            <input type="email" name="lastname" id="lastname" placeholder="Digite seu sobrenome">
+            <label for="lastname"> Sobrenome</label>
+            <input type="text" name="lastname" id="lastname" placeholder="Digite seu sobrenome">
         </div>
 
         <div class="half-box">
             <label for="senha"> Senha</label>
-            <input type="senha" name="senha" id="senha" placeholder="Digite sua senha">
+            <input type="password" name="senha" id="senha" placeholder="Digite sua senha">
         </div>
 
-        <div class="passwordconfirmation">
+        <div class="passwordConfirmation">
             <label for="senha"> Confirmação de senha </label>
-            <input type="password" name="passwordconfirmation" id="passwordconfirmation" placeholder="Confirme sua senha">
+            <input type="password" name="passwordConfirmation" id="passwordconfirmation" placeholder="Confirme sua senha">
         </div>
         
         <div>
@@ -50,8 +50,44 @@
 </div>
 
 <p class="error-validation template"></p>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+        console.log("DOM completamente carregado e analisado");
 
-<script src="scriptCadastro.js"></script>
+        const form = document.getElementById('register-form');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                const body = {
+                    email: document.getElementById('email').value,
+                    name: document.getElementById('nome').value,
+                    lastName: document.getElementById('lastname').value,
+                    password: document.getElementById('senha').value,
+                    passwordConfirmation: document.getElementById('passwordconfirmation').value,
+                };
+
+                console.log("Dados do formulário:", body);
+
+                axios.post("http://localhost:8080/cadastrar", body, {
+                    headers: {
+                        'Access-Control-Allow-Origin': '*',
+                        'Content-Type': 'application/json'
+                    }
+                }).then((response) => {
+                    console.log("Cadastrado com sucesso!", response.data);
+                })
+                .catch((error) => {
+                    console.error("Erro ao cadastrar:", error);
+                });
+            });
+        } else {
+            console.error("Formulário não encontrado!");
+        }
+    });
+</script>
+<!--<script src="scriptCadastro.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     
 </body>
 </html>

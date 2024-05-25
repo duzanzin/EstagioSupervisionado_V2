@@ -30,3 +30,6 @@ Acessar o projeto no navegador
 
 É uma biblioteca de Javascript que facilita o gerenciamento de banco de dados Sql 
 ### npm install --save sequelize 
+
+Realizar submit para rota de cadastros
+### npm instal axios 

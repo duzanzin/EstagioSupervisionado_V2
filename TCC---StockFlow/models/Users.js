@@ -12,10 +12,23 @@ const User = database.define('users',{
         type: Sequelize.STRING,
         allowNull: false,
     },
+    lastName: {
+        type: Sequelize.STRING,
+        allowNull: false,
+    },
     email:{
         type: Sequelize.STRING,
         allowNull: false,
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    passwordConfirmation: {
+        type: Sequelize.STRING,
+        allowNull: false,
     }
+
 });
 
 User.sync();
